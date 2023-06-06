@@ -196,7 +196,7 @@ export default function Profil({ user }) {
       .delete(`https://thankful-rose-clam.cyclic.app/professeurs/${user.email}`)
       .then((response) => {
         console.log(response.data.message);
-        navigation.navigate("Login");
+        navigation.replace("Login");
       })
       .catch((error) => console.log(error));
   };
@@ -248,19 +248,6 @@ export default function Profil({ user }) {
         <StatusBar barStyle="light-content" />
         <ScrollView style={{ paddingTop: 20, marginBottom: 60 }}>
           <View style={styles.container}>
-            {/* <Image
-              style={styles.myLogo}
-              source={{
-                uri: "https://raw.githubusercontent.com/hirishu10/my-assets/main/top_log.png",
-              }}
-            />
-            <Text style={styles.header}>Create Account for Free!</Text>
-            <Image
-              style={styles.registerImage}
-              source={{
-                uri: "https://raw.githubusercontent.com/hirishu10/my-assets/main/register.png",
-              }}
-            /> */}
             {getError ? (
               <View style={styles.errorCard}>
                 <TouchableOpacity
@@ -562,7 +549,11 @@ export default function Profil({ user }) {
             >
               <Text style={styles.registerBtnText}>Modifier</Text>
               {loading && loading ? (
-                <ActivityIndicator style={styles.indicator} color={"white"} />
+                <ActivityIndicator
+                  size="large"
+                  style={styles.indicator}
+                  color={"white"}
+                />
               ) : null}
             </TouchableOpacity>
             {/* Supprimer mon compte Button */}

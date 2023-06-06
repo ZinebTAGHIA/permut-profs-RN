@@ -68,7 +68,7 @@ const Navigation = ({ user }) => {
         listeners={({ navigation }) => ({
           tabPress: (e) => {
             e.preventDefault();
-            navigation.navigate("Login");
+            navigation.replace("Login");
           },
         })}
       />

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { PieChart } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
@@ -25,6 +25,7 @@ const chartConfig = {
 export default function Profil() {
   const [numProfesseurs, setNumProfesseurs] = useState(0);
   const [professeurs, setProfesseurs] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchData();
@@ -38,6 +39,7 @@ export default function Profil() {
       const jsonData = await response.json();
       setNumProfesseurs(jsonData.length);
       setProfesseurs(jsonData);
+      setLoading(false);
     } catch (error) {
       console.error(error);
     }
@@ -236,6 +238,13 @@ export default function Profil() {
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Accueil</Text>
       </View>
+      {loading && loading ? (
+        <ActivityIndicator
+          size="large"
+          style={styles.indicator}
+          color={"#6364d5"}
+        />
+      ) : null}
       <View style={styles.container}>
         <Card>
           <Text style={styles.title}>

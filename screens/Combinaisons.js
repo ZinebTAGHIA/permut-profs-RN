@@ -1,13 +1,29 @@
-import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import WebView from "react-native-webview";
 
 const Combinaisons = () => {
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false); // Change the state after 3 seconds
+    }, 3000);
+
+    return () => clearTimeout(timeout); // Clear the timeout if the component unmounts before the timeout expires
+  }, []);
   return (
     <View style={{ flex: 1 }}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Combinaisons</Text>
       </View>
+      {loading && loading ? (
+        <ActivityIndicator
+          size="large"
+          style={styles.indicator}
+          color={"#6364d5"}
+        />
+      ) : null}
       <WebView source={{ uri: "https://graph-permut.vercel.app/" }} />
     </View>
   );

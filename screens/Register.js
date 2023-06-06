@@ -36,6 +36,7 @@ export default function Register({ navigation }) {
   const [loading, setLoading] = useState(false);
   const [EtablissementError, setEtablissementError] = useState("");
   const [TelephoneError, setTelephoneError] = useState("");
+  const [updatedSuccessfull, setUpdatedSuccessfull] = useState("");
 
   const cities = [
     "Agadir",
@@ -238,6 +239,7 @@ export default function Register({ navigation }) {
       .then((response) => {
         console.log(response);
         setLoading(false);
+        setUpdatedSuccessfull("Inscrit avec succès");
         // setEmail("");
         // setPassword("");
         // navigation.replace("Home");
@@ -585,7 +587,9 @@ export default function Register({ navigation }) {
             }}
             selectedStyle={styles.selectedStyle}
           />
-
+          <Text style={{ color: "green", fontSize: 20 }}>
+            {updatedSuccessfull}
+          </Text>
           {/* Login Button */}
           <TouchableOpacity
             style={styles.registerbtn}
