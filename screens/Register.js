@@ -224,7 +224,7 @@ export default function Register({ navigation }) {
   const succesfullyCreateAccount = () => {
     setLoading(true);
     axios
-      .post("https://thankful-rose-clam.cyclic.app/professeurs", {
+      .post("https://tiny-worm-nightgown.cyclic.app/professeurs", {
         nom: getLastName,
         prenom: getFirstName,
         tel: getTelephone,
@@ -524,14 +524,6 @@ export default function Register({ navigation }) {
             onChange={(item) => {
               setSpecialite(item.value);
             }}
-            //   renderLeftIcon={() => (
-            //     <AntDesign
-            //       style={styles.icon}
-            //       color="black"
-            //       name="Safety"
-            //       size={20}
-            //     />
-            //   )}
           />
 
           {/* {ville actuelle} */}

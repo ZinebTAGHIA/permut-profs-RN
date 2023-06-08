@@ -193,7 +193,9 @@ export default function Profil({ user }) {
 
   const deleteFunction = () => {
     axios
-      .delete(`https://thankful-rose-clam.cyclic.app/professeurs/${user.email}`)
+      .delete(
+        `https://tiny-worm-nightgown.cyclic.app/professeurs/${user.email}`
+      )
       .then((response) => {
         console.log(response.data.message);
         navigation.replace("Login");
@@ -201,39 +203,39 @@ export default function Profil({ user }) {
       .catch((error) => console.log(error));
   };
 
-  const updateFunction = () => {
-    axios
-      .put(
-        `https://thankful-rose-clam.cyclic.app/professeurs/${user.email}`,
-        getPassword === ""
-          ? {
-              nom: getLastName,
-              prenom: getFirstName,
-              tel: getTelephone,
-              grade: getGrade,
-              specialite: getSpecialite,
-              faculteActuelle: getEtablissement,
-              villeFaculteActuelle: getVilleActuelle,
-              villeDesiree: getVillesDesirees.join(";"),
-            }
-          : {
-              nom: getLastName,
-              prenom: getFirstName,
-              tel: getTelephone,
-              grade: getGrade,
-              specialite: getSpecialite,
-              faculteActuelle: getEtablissement,
-              villeFaculteActuelle: getVilleActuelle,
-              villeDesiree: getVillesDesirees.join(";"),
-              password: getPassword,
-            }
-      )
-      .then((response) => {
-        console.log(response.data);
-        setUpdatedSuccessfull("Modifié avec succès");
-      })
-      .catch((err) => console.log(err));
-  };
+  // const updateFunction = () => {
+  //   axios
+  //     .put(
+  //       `https://thankful-rose-clam.cyclic.app/professeurs/${user.email}`,
+  //       getPassword === ""
+  //         ? {
+  //             nom: getLastName,
+  //             prenom: getFirstName,
+  //             tel: getTelephone,
+  //             grade: getGrade,
+  //             specialite: getSpecialite,
+  //             faculteActuelle: getEtablissement,
+  //             villeFaculteActuelle: getVilleActuelle,
+  //             villeDesiree: getVillesDesirees.join(";"),
+  //           }
+  //         : {
+  //             nom: getLastName,
+  //             prenom: getFirstName,
+  //             tel: getTelephone,
+  //             grade: getGrade,
+  //             specialite: getSpecialite,
+  //             faculteActuelle: getEtablissement,
+  //             villeFaculteActuelle: getVilleActuelle,
+  //             villeDesiree: getVillesDesirees.join(";"),
+  //             password: getPassword,
+  //           }
+  //     )
+  //     .then((response) => {
+  //       console.log(response.data);
+  //       setUpdatedSuccessfull("Modifié avec succès");
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
 
   return (
     <>
@@ -543,7 +545,7 @@ export default function Profil({ user }) {
               {updatedSuccessfull}
             </Text>
             {/* Modifier Button */}
-            <TouchableOpacity
+            {/* <TouchableOpacity
               style={styles.registerbtn}
               onPress={updateFunction}
             >
@@ -555,7 +557,7 @@ export default function Profil({ user }) {
                   color={"white"}
                 />
               ) : null}
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             {/* Supprimer mon compte Button */}
             <TouchableOpacity
               style={styles.registerbtn}

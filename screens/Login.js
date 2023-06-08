@@ -34,13 +34,25 @@ export default function Login({ navigation, setUser }) {
     }
     if (getEmail !== "" && getPassword !== "") {
       axios
-        .post("https://thankful-rose-clam.cyclic.app/login", {
+        .post("https://tiny-worm-nightgown.cyclic.app/login", {
           email: getEmail,
           password: getPassword,
         })
         .then((response) => {
           console.log(response);
-          setUser(response.data.user);
+          axios
+            .get("https://tiny-worm-nightgown.cyclic.app/professeurs")
+            .then((response) => {
+              console.log(response.data);
+              const user = response.data.filter(
+                (user) => user.email === getEmail
+              );
+              setUser(user[0]);
+              console.log(user[0]);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
           setEmail("");
           setPassword("");
           navigation.replace("App");

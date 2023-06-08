@@ -5,6 +5,7 @@ import { Dimensions } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import Chart from "./Chart";
 import Card from "./Card";
+import axios from "axios";
 
 const screenWidth = Dimensions.get("window").width - 35;
 
@@ -28,22 +29,35 @@ export default function Profil() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchData();
+    axios
+      .get("https://tiny-worm-nightgown.cyclic.app/professeurs")
+      .then((response) => {
+        setNumProfesseurs(response.data.length);
+        setProfesseurs(response.data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }, []);
 
-  const fetchData = async () => {
-    try {
-      const response = await fetch(
-        "https://thankful-rose-clam.cyclic.app/professeurs"
-      );
-      const jsonData = await response.json();
-      setNumProfesseurs(jsonData.length);
-      setProfesseurs(jsonData);
-      setLoading(false);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
+
+  // const fetchData = async () => {
+  //   try {
+  //     const response = await fetch(
+  //       "https://tiny-worm-nightgown.cyclic.app/professeurs"
+  //     );
+  //     const jsonData = await response.json();
+  //     setNumProfesseurs(jsonData.length);
+  //     setProfesseurs(jsonData);
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.error(error);
+  //   }
+  // };
 
   const generateSpecialitesData = (professeurs) => {
     const specialiteCount = {};
@@ -257,6 +271,8 @@ export default function Profil() {
             borderColor: "#6364d5",
             borderWidth: 2,
             borderRadius: 10,
+            marginBottom: 10,
+            marginTop: 10,
           }}
         >
           <Card>
@@ -280,6 +296,7 @@ export default function Profil() {
             borderColor: "#6364d5",
             borderWidth: 2,
             borderRadius: 10,
+            marginBottom: 10,
           }}
         >
           <Card>
@@ -302,6 +319,7 @@ export default function Profil() {
             borderColor: "#6364d5",
             borderWidth: 2,
             borderRadius: 10,
+            marginBottom: 10,
           }}
         >
           <Card>

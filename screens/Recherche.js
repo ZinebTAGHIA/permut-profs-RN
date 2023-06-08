@@ -22,7 +22,7 @@ export default function Rechercher() {
 
   useEffect(() => {
     axios
-      .get("https://thankful-rose-clam.cyclic.app/professeurs")
+      .get("https://tiny-worm-nightgown.cyclic.app/professeurs")
       .then((response) => {
         setProfesseurs(response.data);
         setProfesseursData(response.data);
@@ -230,6 +230,7 @@ const styles = StyleSheet.create({
     paddingLeft: 40,
     paddingRight: 40,
     paddingBottom: 30,
+    marginBottom: 50,
   },
   header: {
     backgroundColor: "#6364d5",
